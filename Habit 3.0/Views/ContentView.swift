@@ -55,9 +55,10 @@ struct ContentView: View {
                         Spacer()
                         VStack {
                             Image(systemName: tabIconArray[num])
-                                .font(.system(size: 28, weight: .bold))
+                                .font(.system(size: 25))
                                 .foregroundColor(selectedIndex == num ? .yellow : .white)
                             Text("\(tabNameArray[num])")
+                                .font(.system(size:16, weight: .bold))
                                 .foregroundColor(selectedIndex == num ? .yellow : .white)
                         }
                         Spacer()

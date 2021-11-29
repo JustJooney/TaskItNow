@@ -9,6 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(entity: TimeOfDay.entity(), sortDescriptors: []) var timeOfDay: FetchedResults<TimeOfDay>
+    
     @Binding var shouldShowModel: Bool
     
     var body: some View {

@@ -32,7 +32,7 @@ struct ContentView: View {
             
             Divider()
                 .padding(.bottom, 1)
-                .background(.yellow)
+                .background(isLightMode ? .blue : .yellow)
             
             HStack {
                 Button {

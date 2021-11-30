@@ -15,6 +15,7 @@ struct HomeView: View {
     
     @Binding var shouldShowModel: Bool
     @Binding var isLightMode: Bool
+    @State private var animationAmount = 1.0
     
     var body: some View {
         
@@ -23,28 +24,20 @@ struct HomeView: View {
             List {
                 
                 Section() {
-                    
                     ForEach(tasks, id:\.self) {task in
-                        HStack {
-                            
-                            Text(task.taskName ?? "")
-                                .font(.title2)
-                            
-                        }
-                        .onLongPressGesture {
-                            task.isComplete = true
-                        }
+                        
+                        Text(task.taskName ?? "")
+                            .font(.title2)
+
                     }
                     .onDelete(perform: removeItem)
                 } header: {
                     Text("Tasks")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(isLightMode ? .blue : .yellow)
                 }
             }
-            .listStyle(.plain)
-            .statusBar(hidden: true)
+            .listStyle(.grouped)
             .navigationTitle("\(Date().formatted(.dateTime.day().month().year()))")
-            .animation(.spring(), value: 0)
         }
         .environment(\.colorScheme, isLightMode ? .light : .dark)
     }

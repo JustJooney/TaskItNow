@@ -11,79 +11,54 @@ struct HomeView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @FetchRequest(entity: TimeOfDay.entity(), sortDescriptors: []) var timeOfDay: FetchedResults<TimeOfDay>
+    @FetchRequest(entity: Task.entity(), sortDescriptors: [NSSortDescriptor(key: "taskName", ascending: true)]) var tasks: FetchedResults<Task>
     
     @Binding var shouldShowModel: Bool
+    @Binding var isLightMode: Bool
     
     var body: some View {
         
-        
         NavigationView {
             
-            GeometryReader { geometry in
+            List {
                 
-                List {
-                    Section() {
-
-                        NavigationLink("Name of Habit", destination: HomeDetailView())
-
-                    } header: {
-                        
-                        Text("Morning")
-    
-                    }
+                Section() {
                     
-                    
-                    Section {
-                        ForEach(0..<10, id:\.self){_ in
-                            NavigationLink("I am a ForEach button", destination: HomeDetailView())
+                    ForEach(tasks, id:\.self) {task in
+                        HStack {
+                            
+                            Text(task.taskName ?? "")
+                                .font(.title2)
+                            
                         }
-                    } header: {
-                        Text("Afternoon")
+                        .onLongPressGesture {
+                            task.isComplete = true
+                        }
                     }
-                    
-                    Section {
-                        NavigationLink("Yup", destination: HomeDetailView())
-                    } header: {
-                        
-                        Text("Evening")
-                    }
+                    .onDelete(perform: removeItem)
+                } header: {
+                    Text("Tasks")
+                        .foregroundColor(.yellow)
                 }
-                .listStyle(.inset)
             }
+            .listStyle(.plain)
+            .statusBar(hidden: true)
             .navigationTitle("\(Date().formatted(.dateTime.day().month().year()))")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        print("Edit button has been pressed")
-                    } label: {
-                        Text("Edit")
-                            .font(.title2)
-                            .foregroundColor(.yellow)
-                    }
-
-                }
-            }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        shouldShowModel.toggle()
-                    } label: {
-                        Text("Add")
-                            .font(.title2)
-                            .foregroundColor(.yellow)
-                    }
-
-                }
-            }
+            .animation(.spring(), value: 0)
         }
-        
-        .environment(\.colorScheme, .dark)
+        .environment(\.colorScheme, isLightMode ? .light : .dark)
+    }
+    
+    func removeItem(at offsets: IndexSet) {
+        for index in offsets {
+            let task = tasks[index]
+            PersistenceController.shared.delete(task)
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(shouldShowModel: .constant(true))
+        HomeView(shouldShowModel: .constant(true), isLightMode: .constant(false))
     }
 }

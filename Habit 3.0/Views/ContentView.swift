@@ -11,10 +11,10 @@ import SwiftUI
 struct ContentView: View {
     
     @State var shouldShowModel = false
+    @State var isLightMode = false
     @State private var selectedIndex = 0
-    var tabIconArray = ["checkmark", "calendar", "gearshape.fill"]
-    var tabNameArray = ["Task", "Progress", "Setting"]
-    
+    var tabIconArray = ["checkmark", "plus"]
+    var tabNameArray = ["Task", "Add"]
     
     var body: some View {
         
@@ -22,51 +22,50 @@ struct ContentView: View {
             ZStack {
                 
                 // this opens a new screen for the user to add a new task
-                Spacer().fullScreenCover(isPresented: $shouldShowModel) {
-                    AddView(shouldShowModel: $shouldShowModel)
+                Spacer().sheet(isPresented: $shouldShowModel) {
+                    AddView(shouldShowModel: $shouldShowModel, isLightMode: $isLightMode)
                 }
                 
-                switch selectedIndex {
-                    
-                case 0 :
-                    HomeView(shouldShowModel: $shouldShowModel)
-                case 1:
-                    ScrollView {
-                        Text("Second View")
-                    }
-                case 2:
-                    ScrollView {
-                        Text("Hello")
-                    }
-                default:
-                    HomeView(shouldShowModel: $shouldShowModel)
-                }
+                HomeView(shouldShowModel: $shouldShowModel, isLightMode: $isLightMode)
+                
             }
-
+            
             Divider()
                 .padding(.bottom, 1)
                 .background(.yellow)
             
             HStack {
-                ForEach(0..<3) { num in
-                    Button {
-                        selectedIndex = num
-                    } label: {
-                        Spacer()
-                        VStack {
-                            Image(systemName: tabIconArray[num])
-                                .font(.system(size: 25))
-                                .foregroundColor(selectedIndex == num ? .yellow : .white)
-                            Text("\(tabNameArray[num])")
-                                .font(.system(size:16, weight: .bold))
-                                .foregroundColor(selectedIndex == num ? .yellow : .white)
-                        }
-                        Spacer()
+                Button {
+                    shouldShowModel.toggle()
+                } label: {
+                    Spacer()
+                    VStack {
+                        Image(systemName: "plus")
+                            .font(.system(size: 25))
+                            .foregroundColor(isLightMode ? .black : .white)
+                        Text("Add")
+                            .font(.system(size:16, weight: .bold))
+                            .foregroundColor(isLightMode ? .black : .white)
                     }
-                    .padding(.vertical, 5)
+                    Spacer()
+                }
+                .padding(.vertical, 5)
+                Button {
+                    isLightMode.toggle()
+                } label: {
+                    Spacer()
+                    VStack {
+                        Image(systemName: "\(isLightMode ? "moon.fill" : "sun.max.fill")")
+                            .font(.system(size: 25))
+                            .foregroundColor(isLightMode ? .black : .white)
+                        Text("\(isLightMode ? "Dark Mode" : "Light Mode")")
+                            .font(.system(size:16, weight: .bold))
+                            .foregroundColor(isLightMode ? .black : .white)
+                    }
+                    Spacer()
                 }
             }
-            .background(.black)
+            .background(isLightMode ? .white : .black)
         }
     }
 }

@@ -12,7 +12,6 @@
 		065AB33F2753FD9C00D07B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 065AB33E2753FD9C00D07B8D /* Assets.xcassets */; };
 		065AB3422753FD9C00D07B8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 065AB3412753FD9C00D07B8D /* Preview Assets.xcassets */; };
 		065AB349275414FA00D07B8D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AB348275414FA00D07B8D /* HomeView.swift */; };
-		065AB34E27541DBC00D07B8D /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AB34D27541DBC00D07B8D /* HomeDetailView.swift */; };
 		065AB350275429E300D07B8D /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AB34F275429E300D07B8D /* AddView.swift */; };
 		065AB35427544F6200D07B8D /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 065AB35227544F6200D07B8D /* Stash.xcdatamodeld */; };
 		065AB35727545B4100D07B8D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065AB35627545B4100D07B8D /* PersistenceController.swift */; };
@@ -25,7 +24,6 @@
 		065AB33E2753FD9C00D07B8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		065AB3412753FD9C00D07B8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		065AB348275414FA00D07B8D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		065AB34D27541DBC00D07B8D /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 		065AB34F275429E300D07B8D /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		065AB35327544F6200D07B8D /* Stash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stash.xcdatamodel; sourceTree = "<group>"; };
 		065AB35627545B4100D07B8D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			children = (
 				065AB33C2753FD9A00D07B8D /* ContentView.swift */,
 				065AB348275414FA00D07B8D /* HomeView.swift */,
-				065AB34D27541DBC00D07B8D /* HomeDetailView.swift */,
 				065AB34F275429E300D07B8D /* AddView.swift */,
 			);
 			path = Views;
@@ -176,7 +173,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				065AB34E27541DBC00D07B8D /* HomeDetailView.swift in Sources */,
 				065AB35727545B4100D07B8D /* PersistenceController.swift in Sources */,
 				065AB349275414FA00D07B8D /* HomeView.swift in Sources */,
 				065AB33D2753FD9A00D07B8D /* ContentView.swift in Sources */,
